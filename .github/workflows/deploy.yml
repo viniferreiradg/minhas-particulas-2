@@ -16,16 +16,18 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20  # Define a versão do Node.js
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
 
       - name: Build project
-        run: npm run build  # Gera a pasta "dist"
+        run: |
+          export NODE_OPTIONS=--openssl-legacy-provider
+          npm run build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Branch onde o GitHub Pages será publicado
-          folder: dist  # Certifique-se que a pasta de build correta está aqui
+          branch: gh-pages
+          folder: dist
