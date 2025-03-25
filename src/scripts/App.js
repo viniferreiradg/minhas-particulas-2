@@ -31,7 +31,7 @@ export default class App {
 		window.addEventListener('keyup', this.keyup.bind(this));
 		
 		const el = this.webgl.renderer.domElement;
-		el.addEventListener('click', this.click.bind(this));
+		// el.addEventListener('click', this.click.bind(this));
 	}
 
 	animate() {
@@ -69,7 +69,7 @@ export default class App {
 		if (e.keyCode == 71) { if (this.gui) this.gui.toggle(); }
 	}
 
-	click(e) {
-		this.webgl.next();
-	}
+	// click(e) {
+	// 	this.webgl.next();
+	// }
 }
