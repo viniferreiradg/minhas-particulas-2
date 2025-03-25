@@ -26,6 +26,15 @@ jobs:
           export NODE_OPTIONS=--openssl-legacy-provider
           npm run build
 
+      - name: Clean git repository
+        run: |
+          git reset --hard
+          git clean -fdx
+
+      - name: Create gh-pages branch if it doesn't exist
+        run: |
+          git checkout -b gh-pages || git checkout gh-pages
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
