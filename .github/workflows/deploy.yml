@@ -3,29 +3,27 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # ou a branch que você estiver usando
+      - main  # Ou o nome da sua branch principal
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      - name: Install Node.js
+        uses: actions/setup-node@v20  # Certifique-se que é a versão correta do Node.js
 
       - name: Install dependencies
         run: npm install
 
       - name: Build project
-        run: npm run build
+        run: npm run build  # Gera a pasta "dist"
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # ou a branch que você configurou para o GitHub Pages
-          folder: build     # ou dist, dependendo de onde o build for gerado
+          branch: gh-pages  # Branch onde o GitHub Pages será publicado
+          folder: dist  # Certifique-se que a pasta de build correta está aqui
